@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,7 @@
         Loại sản phẩm:       <input type="text" id="lsp_ten" name="lsp_ten" class="form-control"><br><br>
                             <input type="submit" name="them" id="them" class="btn btn-primary" value="Thêm Loại sản phẩm" />
     </form>
-
+    
     <?php
         require_once __DIR__ .'/../../dbconnect.php';
 

@@ -1,4 +1,5 @@
 <?php
+    ob_start();
     require_once __DIR__ . '/../dbconnect.php';
     $page = isset($_GET['page']) ? $_GET['page'] : 'sanpham_danhsach';
 ?>

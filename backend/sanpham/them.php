@@ -1,4 +1,4 @@
-<?php // ob_start(); ?>
+
 <?php
     require_once __DIR__ .'/../../dbconnect.php';
 
@@ -113,7 +113,6 @@ EOT;
             $sqlInsert = "INSERT INTO sanpham(sp_ten, sp_gia, sp_mota, lsp_ma, km_ma) VALUES (N'$sp_ten', $sp_gia, N'$sp_mota', $lsp_ma, $km_ma);";
             mysqli_query($conn, $sqlInsert);
             header('location:/tocotoco/backend/index.php?page=sanpham_danhsach');
-            // ob_enf_fluch();
         }
     }
 
