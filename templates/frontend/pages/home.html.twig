@@ -1,0 +1,134 @@
+{# Kế thừa layout frontend #}
+{% extends "frontend/layouts/layout.html.twig" %}
+
+{% block title %}
+Trang chu 
+{% endblock %}
+
+{# Nội dung trong block content #}
+{% block content %}
+
+<!-- Start Main -->
+<main>
+        <!-- section 1 - about -->
+        <section class="about">
+            <div class="container">
+                <div class="row align-items-lg-center">
+                    <div class="col-12 col-md-7 text-center">
+                        <div class="section-heading mb-3">
+                            <h4>ToCoToCo Story</h4>
+                            <h1>VỀ CHÚNG TÔI</h1>
+                        </div>
+                        <p>Bên cạnh niềm tự hào về những ly trà sữa ngon – sạch – tươi, chúng tôi luôn tự tin mang đến khách hàng những trải nghiệm tốt nhất về dịch vụ và không gian.</p>
+                        <a class="btn mt-4 mb-5 mb-md-0" href="#" >XEM THÊM</a>
+                    </div>
+                    <div class="col-12 col-md-5">
+                        <img class="img-fluid" src="/tocotoco/public/img/background/section_1.jpg" alt="section-1" width="90%">
+                    </div>
+                </div>
+            </div>
+        </section>  
+        <!-- End section 1 - about -->  
+        
+        <!-- section 2 - menu -->
+        <section class="menu">
+            <div class="container-fluid">
+                <div class="row text-center text-white">
+                    <div class="col-12 col-md-4 mb-4 mb-md-0">
+                        <div class="shop-info">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                           <h2>200</h2>
+                           <p>Cửa hàng phủ sóng toàn quốc.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 mb-4 mb-md-0">
+                        <div class="shop-info">
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                           <h2>8h - 22h</h2>
+                           <p>Mỗi ngày, cả ngày lễ và chủ nhật.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 mb-4 mb-md-0">
+                        <div class="shop-info">
+                        <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+                           <h2>1900.63.69.36</h2>
+                           <p>Hotline hỗ trợ 24/7</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- End section 2 - menu -->
+
+        <!-- Section 3 - list product -->
+        <section class="products">
+            <div class="container">
+
+                <div class="row" style="margin-top: 30px;">
+                    <h2 class="list-title" style="font-family: Lucida Console; color: #D3B673; font-weight:bold ">ToCoToCo Menu</h2>
+                    <h2 class="list-title" style="font-family: Courier New; font-weight:bold; ">DANH SÁCH SẢN PHẨM</h2><br>
+                    <img src="/tocotoco/public/img/thuonghieu/home_line.jpg" alt="home_line" style="margin: 20px auto;">
+                </div>
+
+                <!-- Giải thuật duyệt và render Danh sách sản phẩm theo dòng, cột của Bootstrap -->
+                {% set counter = 0 %}
+                {% set group = 3 %}
+                {% set limit = danhsachsanpham|length %}
+                {% set col_class_name = (12 / group) %}
+                <div class="danhsachsanpham py-5 bg-light">
+                    <div class="container">
+                        <div class="row">
+                            {% for sanpham in danhsachsanpham %}
+                            <div class="col-md-{{ col_class_name }}">
+                                <div class="card mb-4 shadow-sm">
+                                    {% if sanpham.hsp_tentaptin %}
+                                    <a href="/tocotoco/frontend/sanpham/chitiet?sp_ma={{ sanpham.sp_ma }}">
+                                        <img class="bd-placeholder-img card-img-top" width="100%" height="280"
+                                            src="/tocotoco/public/uploads/{{ sanpham.hsp_tentaptin }}" />
+                                    </a>
+                                    {% else %}
+                                    <a href="/tocotoco/frontend/sanpham/chitiet?sp_ma={{ sanpham.sp_ma }}">
+                                        <img class="bd-placeholder-img card-img-top" width="100%" height="280"
+                                            src="/tocotoco/public/img/no_image.jpg" />
+                                    </a>
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <a href="/tocotoco/frontend/sanpham/chitiet?sp_ma={{ sanpham.sp_ma }}">
+                                            <h5>{{ sanpham.sp_ten }}</h5>
+                                        </a>
+                                        <h6>{{ sanpham.lsp_ten }}</h6>
+                                       
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <a class="btn btn-sm btn-outline-secondary" href="/tocotoco/frontend/sanpham/chitiet.php?sp_ma={{ sanpham.sp_ma }}">Xem chi tiết</a>
+                                            </div>
+                                            <small class="text-muted text-right">
+                                                <b>{{ sanpham.sp_gia }}</b>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% set counter = counter + 1 %}
+                            {% if (counter % group == 0 and counter < limit) %}
+                            </div><div class="row">
+                            {% endif %}
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="row">
+                    <a href="/tocotoco/frontend/sanpham/danhsach.php" class="btnToco">XEM TẤT CẢ</a>
+                </div>
+            </div>  
+        </section>
+   <!-- end list product -->
+    </main>
+<!-- End Main -->
+
+{% endblock %}
+{# End Nội dung trong block content #}
